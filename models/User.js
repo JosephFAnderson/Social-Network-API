@@ -1,4 +1,4 @@
-const { Schema, Types, isObjectIdOrHexString } = require('mongoose');
+const { Schema, Types } = require('mongoose');
 
 const userSchema = new Schema( {
     username: {
