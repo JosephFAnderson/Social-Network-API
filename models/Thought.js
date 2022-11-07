@@ -1,6 +1,7 @@
 const { Schema, Types } = require('mongoose');
+const reactionSchema = require('./Reaction');
 
-const thoughScheme = new Schema({
+const thoughtSchema = new Schema({
     thoughtText: {
         type: String,
         required: true,
@@ -9,15 +10,14 @@ const thoughScheme = new Schema({
     },
     createdAt: {
         type: Date,
+        default: Date.now,
+        // get: date => format date return here
     },
     username: {
         type: String,
         required: true
     },
-    reactions: {
-        type: Array, //nested documents from reactionSchema 
-        ref: "reaction"
-    }
+    reactions: [reactionSchema]
 }, {
     virtuals: {
         // Retrieves length of the thought's reactions array field on query
@@ -26,5 +26,12 @@ const thoughScheme = new Schema({
                 return this.reactions.length;
             }
         }
+    },
+    toJSON: {
+        getters: true
     }
-})
+});
+
+const Thought = mongoose.model('thoughts', thoughtSchema)
+
+module.exports = Thought;

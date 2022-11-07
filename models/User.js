@@ -13,14 +13,18 @@ const userSchema = new Schema( {
         required: true,
         match: /^([A-Za-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/
     },
-    thoughts: {
-        type: Array,
+    thoughts: [
+        {
+        type: Schema.Types.ObjectId,
         ref: 'Thought'
-    },
-    friends: {
-        type: Array,
+        }
+    ],
+    friends: [
+        {
+        type: Schema.Types.ObjectId,
         ref: 'User'
-    }
+        }
+    ]
 }, {
     virtuals: {
         // Retrieves length of the user's friends array on query.
@@ -29,5 +33,12 @@ const userSchema = new Schema( {
                 return this.friends.length;
             }
         }
+    },
+    toJSON: {
+        getters: true
     }
 });
+
+const User = mongoose.model('users', userSchema);
+
+module.exports = User;
