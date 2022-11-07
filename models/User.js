@@ -36,7 +36,9 @@ const userSchema = new Schema( {
     },
     toJSON: {
         getters: true
-    }
+    },
+    id: false,
+    versionKey: false
 });
 
 const User = model('users', userSchema);
