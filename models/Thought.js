@@ -26,6 +26,9 @@ const thoughtSchema = new Schema({
                 return this.reactions.length;
             }
         }
+    },
+    toJSON: {
+        getters: true
     }
 });
 

@@ -33,6 +33,9 @@ const userSchema = new Schema( {
                 return this.friends.length;
             }
         }
+    },
+    toJSON: {
+        getters: true
     }
 });
 
