@@ -24,8 +24,7 @@ module.exports = {
         try{
             const user = await User.findOne({username: req.body.username});
             const thoughtData = await Thought.create(req.body);
-            user.thoughts.push(thoughtData._id);
-            await User.findByIdAndUpdate(user._id, user, {new: true});
+            await User.findByIdAndUpdate(user._id, {$push: {thoughts: thoughtData._id}}, {new: true});
 
             res.status(200).json(thoughtData);
         }catch (err) {
