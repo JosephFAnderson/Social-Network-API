@@ -62,5 +62,18 @@ module.exports = {
             console.log(err);
             res.status(500).json(err);
         }
+    },
+    deleteReaction: async (req, res) => {
+        try{
+            const reactionId = req.body.reactionId;
+            if(!reactionId){
+                res.status(400).json("Invalid reaction id");
+                return;
+            }
+            const updatedThought = await Thought.findByIdAndUpdate(req.params.thoughtId, {$pull: {reactions: {reactionId}}}, {new: true});
+            res.status(200).json(updatedThought);
+        }catch (err) {
+            res.status(500).json(err);
+        }
     }
 }
