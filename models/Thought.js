@@ -29,7 +29,8 @@ const thoughtSchema = new Schema({
     },
     toJSON: {
         getters: true
-    }
+    },
+    id: false
 });
 
 const Thought = model('thoughts', thoughtSchema);
