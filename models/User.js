@@ -27,7 +27,6 @@ const userSchema = new Schema( {
     ]
 }, {
     virtuals: {
-        // Retrieves length of the user's friends array on query.
         friendCount: {
             get() {
                 return this.friends.length;

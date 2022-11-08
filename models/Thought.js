@@ -11,7 +11,10 @@ const thoughtSchema = new Schema({
     createdAt: {
         type: Date,
         default: Date.now,
-        // get: date => format date return here
+        get: date => {
+            const newDate = new Date(date);
+            return `${newDate.getMonth()+1}-${newDate.getDate()}-${newDate.getFullYear()}`
+        }
     },
     username: {
         type: String,
@@ -20,7 +23,6 @@ const thoughtSchema = new Schema({
     reactions: [reactionSchema]
 }, {
     virtuals: {
-        // Retrieves length of the thought's reactions array field on query
         reactionCount: {
             get() {
                 return this.reactions.length;

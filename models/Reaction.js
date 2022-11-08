@@ -17,8 +17,10 @@ const reactionSchema = new Schema({
     createdAt: {
         type: Date,
         default: Date.now,
-        // get: date => Format timestamp here
-
+        get: date => {
+            const newDate = new Date(date);
+            return `${newDate.getMonth()+1}-${newDate.getDate()}-${newDate.getFullYear()}`
+        }
     }
 },{
     toJSON: {
