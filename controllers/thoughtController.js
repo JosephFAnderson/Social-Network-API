@@ -33,7 +33,7 @@ module.exports = {
     },
     updateThought: async (req, res) => {
         try{
-            const thoughtData = await Thought.findByIdAndUpdate(req.params.id, req.body, {new: true});
+            const thoughtData = await Thought.findByIdAndUpdate(req.params.id, {thoughtText: req.body.thoughtText}, {new: true});
             res.status(200).json(thoughtData);
         }catch (err) {
             res.status(500).json(err);
