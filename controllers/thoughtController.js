@@ -47,5 +47,20 @@ module.exports = {
         }catch (err) {
             res.status(500).json(err);
         }
+    },
+    addReaction: async (req, res) => {
+        try{
+            const reactionBody = req.body.reactionBody;
+            const username = req.body.username;
+            if(!reactionBody || !username){
+                res.status(400).json("Invalid reaction");
+                return;
+            }            
+            const newReaction = await Thought.findByIdAndUpdate(req.params.thoughtId, {$push: {reactions: {reactionBody, username}}}, {new: true});
+            res.status(200).json(newReaction);
+        }catch(err) {
+            console.log(err);
+            res.status(500).json(err);
+        }
     }
 }
