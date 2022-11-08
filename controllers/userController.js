@@ -51,5 +51,13 @@ module.exports = {
         }catch (err) {
             res.status(500).json(err);
         }
+    },
+    removeFriend: async (req, res) => {
+        try{
+            const deleted = await User.findByIdAndUpdate(req.params.userId, {$pull: {friends: req.params.friendId}}, {new: true})
+            res.status(200).json(`Removed ${req.params.friendId} from user ${deleted.username}'s friends.`)
+        }catch (err) {
+            res.status(500).json(err);
+        }
     }
 }
