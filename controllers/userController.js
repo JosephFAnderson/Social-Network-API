@@ -47,7 +47,7 @@ module.exports = {
     },
     addFriend: async (req, res) => {
         try{
-            const newFriend = await User.findByIdAndUpdate(req.params.userId, {$push: {friends: req.params.friendId}}, {new: true});
+            const newFriend = await User.findByIdAndUpdate(req.params.userId, {$addToSet: {friends: req.params.friendId}}, {new: true});
             res.status(200).json(newFriend);
         }catch (err) {
             res.status(500).json(err);
