@@ -16,7 +16,7 @@ Once you have installed these folders into your application, you will need to en
 
 ## Usage
 ### User
-Provided [here]() is a walkthough video of the routes being tested with Postman
+Provided [here](https://drive.google.com/file/d/1JapPFfy4C0QJ56u2oRT4GUUPP9L8DHgP/view?usp=sharing) is a walkthough video of the routes being tested with Postman
 
 There are 3 endpoints for User routes
 
